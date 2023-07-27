@@ -16,33 +16,38 @@ The instructions for basic OS configuration are extracted from the [Lluvia proje
 On the desktop machine, download the Raspberry Pi Imager and install a fresh version of the operating system in a micro SD card.
 
 ### Ubuntu Installation
+
 ```shell
 sudo apt install rpi-imager
 
 ```
 
 ### Windows Installation
+
 For Windows users, download Raspberry Pi Imager directly using this [link](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 
 ### Raspberry Pi Imager
 
 1. Select **CHOOSE OS** option to choose the Operating System.
+
 ![](rpi-imager.png)
 
 
 2. Select **Raspberry Pi OS Lite (64-bit)**
+
 ![](rpi-imager-os-select.png)
 
 3. Inside **CHOOSE STORAGE** , select the microSD where you will install the Raspberry Pi OS.
+
 ![](rpi-imager-sd.jpeg)
 
 4. In the advanced  options, ensure that SSH is enabled and configure the hostname, username, password, and the Wi-Fi network to which the Raspberry Pi 4 will be connected.
+
 ![](rpi-imager-advancedOptions.png)
+
 ![](rpi-imager-advancedOptions2.png)
 
 5. Click on **save**, and finally, click on **write**, and wait for the process to complete.
-
-
 
 ## Configurations inside the Raspberry Pi.
 
@@ -59,25 +64,32 @@ sudo apt upgrade
 sudo reboot
 ```
 
-## SSH connection (Optional) 
+## SSH connection (Optional)
+
 There are two ways to initiate a remote connection between a PC and the Raspberry Pi using the SSH protocol. To get started, ensure that both devices are connected to the same network.
 
 ###### **Using the Raspberry's hostname** 
+
 Both the username and hostname, as well as the password, set during the initial OS installation of the Raspberry Pi will be required.
 
 ```shell
 ssh username@hostname.local
 ```
+
 For example: 
+
 ```shell
 ssh rosales@raspberrypi.local
 ```
 
 ###### **Using the Raspberry's IP** 
+
 ```shell
 ssh username@raspberry_ip
 ```
+
 For example: 
+
 ```shell
 ssh rosales@192.168.1.77
 ```
@@ -87,6 +99,7 @@ ssh rosales@192.168.1.77
 ```shell
 sudo ifconfig
 ```
+
 ![](rpi-ifconfig.png)
 
 
@@ -125,6 +138,7 @@ sudo reboot
 ```
 
 ### I2C module
+
 ```shell
 sudo raspi-config
 ```
@@ -132,6 +146,7 @@ sudo raspi-config
 ![](raspi-config-interface-options.png)
 
 ![](raspi-config-legacy-i2c.png)
+
 ```shell
 sudo reboot
 ```
@@ -201,7 +216,7 @@ Server: Docker Engine - Community
   GitCommit:        de40ad0
 ```
 
-and run a demo container:
+And run a demo container:
 
 ```bash
 docker run hello-world
@@ -253,10 +268,12 @@ sudo raspi-config
 
 
 1. Select option (3) Interface Options.
+
 ![](raspi-config-interface-options.png)
 
 
 2.  Choose **I1 legacy Camera** if you are experiencing issues with **/dev/video0**. Or choose **I5 I2C** if your problem is related to **/dev/i2c-1**.
+
 ![](raspi-config-legacy-camera.png)
 
 ```shell
@@ -276,14 +293,17 @@ sudo nano config.txt
 
 
 1. Once you're in **config.txt** , uncomment the line **dtparam=i2c_arm=on**.This will resolve the issue with **/dev/i2c-1**.
+
 ![](solving_error_i2c-1.png)
 
 
 2.  Make sure that at the end of the **config.txt**, you only have the lines of code shown below.This will resolve the issue with **/dev/video0**.
+
 ![](solving_error_video0.png)
 
 
-3. Save the configuration by pressing **Ctrl+s** and exit by pressing **Ctrl+x** and then reboot the RPi
+3. Save the configuration by pressing **Ctrl+s** and exit by pressing **Ctrl+x** and then reboot the RPi.
+
 ```shell
 sudo reboot
 
